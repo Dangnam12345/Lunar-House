@@ -592,57 +592,6 @@
     line-height: 1.6;
   }
 
-  /* ===== RANKS ===== */
-  .ranks-section {
-    padding: 100px 0;
-    background: linear-gradient(180deg, transparent, rgba(13,20,40,0.5) 50%, transparent);
-  }
-
-  .ranks-grid {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .rank-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px 28px;
-    text-align: center;
-    min-width: 180px;
-    transition: all 0.4s;
-    position: relative;
-  }
-  .rank-card:hover { transform: translateY(-8px); }
-
-  .rank-badge {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  .rank-name {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .rank-req {
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  .rank-card.featured {
-    border-color: var(--gold);
-    box-shadow: 0 0 40px rgba(245,166,35,0.15);
-  }
-  .rank-card.featured .rank-name { color: var(--gold); }
-
   /* ===== JOIN ===== */
   .join-section {
     padding: 120px 0;
@@ -761,7 +710,6 @@
   <ul class="nav-links">
     <li><a href="#features">Tính năng</a></li>
     <li><a href="#channels">Kênh</a></li>
-    <li><a href="#ranks">Rank</a></li>
     <li><a href="#rules">Nội quy</a></li>
     <li><a href="#join" class="nav-cta">Tham gia ngay</a></li>
   </ul>
@@ -796,8 +744,6 @@
       Xem tính năng ↓
     </a>
   </div>
-
-
 </section>
 
 <!-- FEATURES -->
@@ -934,45 +880,6 @@
   </div>
 </section>
 
-<!-- RANKS -->
-<section class="ranks-section" id="ranks">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-tag">Hệ thống danh hiệu</div>
-      <h2>Leo rank trong cộng đồng</h2>
-      <p>Càng tích cực tham gia, rank càng cao — đặc quyền càng nhiều.</p>
-    </div>
-
-    <div class="ranks-grid">
-      <div class="rank-card reveal" style="transition-delay:0.05s">
-        <span class="rank-badge">🥉</span>
-        <div class="rank-name" style="color:#cd7f32">Tân binh</div>
-        <div class="rank-req">Mới tham gia</div>
-      </div>
-      <div class="rank-card reveal" style="transition-delay:0.1s">
-        <span class="rank-badge">⚔️</span>
-        <div class="rank-name" style="color:#aaa">Chiến binh</div>
-        <div class="rank-req">100 tin nhắn</div>
-      </div>
-      <div class="rank-card reveal" style="transition-delay:0.15s">
-        <span class="rank-badge">💎</span>
-        <div class="rank-name" style="color:#00d4ff">Kim cương</div>
-        <div class="rank-req">500 tin nhắn</div>
-      </div>
-      <div class="rank-card featured reveal" style="transition-delay:0.2s">
-        <span class="rank-badge">👑</span>
-        <div class="rank-name">Huyền thoại</div>
-        <div class="rank-req">1000+ tin nhắn</div>
-      </div>
-      <div class="rank-card reveal" style="transition-delay:0.25s">
-        <span class="rank-badge">🌟</span>
-        <div class="rank-name" style="color:#7c3aed">Boosted</div>
-        <div class="rank-req">Server Booster</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- RULES -->
 <section class="rules-section" id="rules">
   <div class="container">
@@ -1062,8 +969,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-
 </script>
 </body>
 </html>
