@@ -966,12 +966,231 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">🍩 Donut City</div>
-  <p>© 2025 Donut City Discord Server — Cộng đồng gaming Việt Nam</p>
+  <p>© 2026 Donut City Discord Server — Cộng đồng gaming Việt Nam</p>
   <p style="margin-top:8px; font-size:0.78rem;">Made with ❤️ for gamers</p>
 </footer>
 
+<!-- ===== MUSIC PLAYER (Cyber Core style) ===== -->
+<div id="music-player">
+  <div id="player-panel">
+    <!-- Top row: album art + track info + eq bars -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+      <div class="dc-album-art" id="dcAlbumArt">
+        <div class="dc-art-inner" id="dcArtInner">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#00d4ff" stroke-width="1.5" opacity="0.3"/>
+            <circle cx="12" cy="12" r="3" fill="#00d4ff"/>
+            <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+      <div style="flex:1;min-width:0;">
+        <div class="dc-track-title" id="dcTrackTitle">Lofi Gaming Vibes</div>
+        <div class="dc-track-artist" id="dcTrackArtist">Donut City Radio 🍩</div>
+      </div>
+      <div class="dc-eq-bars paused" id="dcEqBars">
+        <div class="dc-eq-bar"></div>
+        <div class="dc-eq-bar"></div>
+        <div class="dc-eq-bar"></div>
+        <div class="dc-eq-bar"></div>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="dc-progress-wrap" id="dcProgressWrap">
+      <div class="dc-progress-fill" id="dcProgressFill" style="width:0%"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:4px;">
+      <span class="dc-time" id="dcTimeCur">0:00</span>
+      <span class="dc-time" id="dcTimeDur">--:--</span>
+    </div>
+
+    <!-- Controls -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;">
+      <button class="dc-ctrl-btn" id="dcBtnPrev" title="Bài trước">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+      </button>
+      <button class="dc-ctrl-btn dc-play-btn" id="dcBtnPlay" title="Phát / Tạm dừng">
+        <svg id="dcIconPlay" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="dcIconPause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <button class="dc-ctrl-btn" id="dcBtnNext" title="Bài tiếp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
+      </button>
+      <div style="display:flex;align-items:center;gap:6px;margin-left:8px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#7a8ba8"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        <input type="range" class="dc-vol-slider" id="dcVolSlider" min="0" max="100" value="70">
+      </div>
+    </div>
+
+    <!-- Playlist -->
+    <div style="margin-top:10px;border-top:1px solid rgba(0,212,255,0.08);padding-top:8px;">
+      <div id="dcPlaylist" style="display:flex;flex-direction:column;gap:2px;"></div>
+    </div>
+  </div>
+
+  <!-- Toggle button -->
+  <button id="dcToggleBtn" title="Mở/Đóng trình phát nhạc">
+    <svg id="dcIconMusic" width="20" height="20" viewBox="0 0 24 24" fill="#050810"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+    <svg id="dcIconClose" width="18" height="18" viewBox="0 0 24 24" fill="#050810" style="display:none"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+</div>
+
+
+<style>
+/* ===== MUSIC PLAYER — CYBER CORE STYLE ===== */
+#music-player {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+#player-panel {
+  background: rgba(5, 8, 16, 0.93);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 1.25rem;
+  padding: 1rem 1.1rem;
+  width: 280px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,255,0.05);
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: bottom right;
+}
+#player-panel.dc-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.92) translateY(10px);
+}
+
+#dcToggleBtn {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.35);
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+#dcToggleBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(0, 212, 255, 0.55);
+}
+
+/* Album art */
+.dc-album-art {
+  width: 48px; height: 48px;
+  border-radius: 0.6rem;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.14);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; flex-shrink: 0; position: relative;
+}
+.dc-art-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 0.6rem;
+}
+.dc-album-art.spinning .dc-art-inner {
+  animation: dcSpin 8s linear infinite;
+}
+@keyframes dcSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+/* Track info */
+.dc-track-title {
+  font-size: 0.82rem; font-weight: 700;
+  color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 160px;
+}
+.dc-track-artist {
+  font-size: 0.7rem; color: var(--muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 160px; margin-top: 1px;
+}
+
+/* EQ bars */
+.dc-eq-bars {
+  display: flex; align-items: flex-end; gap: 2px; height: 16px;
+}
+.dc-eq-bar {
+  width: 3px; border-radius: 1px;
+  background: var(--accent);
+  transform-origin: bottom;
+}
+.dc-eq-bar:nth-child(1) { animation: dcEq 0.8s ease-in-out infinite 0s; height: 100%; }
+.dc-eq-bar:nth-child(2) { animation: dcEq 0.8s ease-in-out infinite 0.15s; height: 80%; }
+.dc-eq-bar:nth-child(3) { animation: dcEq 0.8s ease-in-out infinite 0.3s; height: 100%; }
+.dc-eq-bar:nth-child(4) { animation: dcEq 0.8s ease-in-out infinite 0.1s; height: 60%; }
+.dc-eq-bars.paused .dc-eq-bar { animation-play-state: paused; transform: scaleY(0.3); }
+@keyframes dcEq { 0%,100%{transform:scaleY(0.3)} 50%{transform:scaleY(1)} }
+
+/* Progress */
+.dc-progress-wrap {
+  width: 100%; height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 9999px; cursor: pointer; position: relative;
+  margin-top: 0.5rem;
+}
+.dc-progress-fill {
+  height: 100%; border-radius: 9999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width 0.3s linear; pointer-events: none;
+}
+.dc-progress-wrap:hover .dc-progress-fill { filter: brightness(1.2); }
+
+/* Time */
+.dc-time {
+  font-size: 0.65rem; color: var(--muted);
+  font-family: 'Orbitron', monospace;
+}
+
+/* Control buttons */
+.dc-ctrl-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); padding: 4px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; transition: all 0.2s;
+}
+.dc-ctrl-btn:hover {
+  color: var(--accent);
+  background: rgba(0,212,255,0.08);
+}
+.dc-play-btn {
+  width: 34px; height: 34px;
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.22) !important;
+  color: var(--accent) !important;
+}
+.dc-play-btn:hover { background: rgba(0, 212, 255, 0.22) !important; }
+
+/* Volume slider */
+.dc-vol-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 60px; height: 3px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.1);
+  outline: none; cursor: pointer;
+}
+.dc-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent); cursor: pointer;
+}
+.dc-vol-slider::-moz-range-thumb {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent); border: none; cursor: pointer;
+}
+</style>
+
 <script>
-// Intersection Observer for reveal
+/* Intersection Observer for reveal */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -980,8 +1199,135 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.12 });
-
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ===== MUSIC PLAYER LOGIC ===== */
+const dcTracks = [
+  { title: 'Lofi Gaming Vibes',   artist: 'Donut City Radio 🍩', color: '#00d4ff', src: '' },
+  { title: 'Chill Beats & Pixels',artist: 'Donut City Radio 🍩', color: '#a78bfa', src: '' },
+  { title: 'Late Night Ranked',   artist: 'Donut City Radio 🍩', color: '#ff4d6d', src: '' },
+  { title: 'Neon City Dreams',    artist: 'Donut City Radio 🍩', color: '#f5a623', src: '' },
+];
+
+const dcAudio = new Audio();
+dcAudio.volume = 0.7;
+
+let dcCurrent = 0;
+let dcPlaying = false;
+let dcPanelOpen = false;
+
+const dcPanel      = document.getElementById('player-panel');
+const dcToggleBtn  = document.getElementById('dcToggleBtn');
+const dcIconMusic  = document.getElementById('dcIconMusic');
+const dcIconClose  = document.getElementById('dcIconClose');
+const dcBtnPlay    = document.getElementById('dcBtnPlay');
+const dcIconPlay   = document.getElementById('dcIconPlay');
+const dcIconPause  = document.getElementById('dcIconPause');
+const dcBtnPrev    = document.getElementById('dcBtnPrev');
+const dcBtnNext    = document.getElementById('dcBtnNext');
+const dcProgressFill = document.getElementById('dcProgressFill');
+const dcProgressWrap = document.getElementById('dcProgressWrap');
+const dcTimeCur    = document.getElementById('dcTimeCur');
+const dcTimeDur    = document.getElementById('dcTimeDur');
+const dcVolSlider  = document.getElementById('dcVolSlider');
+const dcTrackTitle = document.getElementById('dcTrackTitle');
+const dcTrackArtist= document.getElementById('dcTrackArtist');
+const dcAlbumArt   = document.getElementById('dcAlbumArt');
+const dcArtInner   = document.getElementById('dcArtInner');
+const dcEqBars     = document.getElementById('dcEqBars');
+const dcPlaylist   = document.getElementById('dcPlaylist');
+
+function dcFmt(s) {
+  if (!s || isNaN(s)) return '0:00';
+  return Math.floor(s/60) + ':' + Math.floor(s%60).toString().padStart(2,'0');
+}
+
+function dcBuildPlaylist() {
+  dcPlaylist.innerHTML = '';
+  dcTracks.forEach((t, i) => {
+    const item = document.createElement('div');
+    item.style.cssText = 'display:flex;align-items:center;gap:8px;padding:5px 6px;border-radius:8px;cursor:pointer;transition:background 0.2s;';
+    item.innerHTML = `
+      <div style="width:6px;height:6px;border-radius:50%;background:${t.color};flex-shrink:0;opacity:${i===dcCurrent?1:0.3};"></div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:0.72rem;font-weight:${i===dcCurrent?700:400};color:${i===dcCurrent?'var(--text)':'var(--muted)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.title}</div>
+        <div style="font-size:0.65rem;color:var(--muted);opacity:0.6;">${t.artist}</div>
+      </div>
+    `;
+    item.addEventListener('mouseenter', () => item.style.background = 'rgba(0,212,255,0.05)');
+    item.addEventListener('mouseleave', () => item.style.background = 'transparent');
+    item.addEventListener('click', () => { dcLoad(i); dcSetPlay(true); });
+    dcPlaylist.appendChild(item);
+  });
+}
+
+function dcLoad(idx) {
+  dcCurrent = idx;
+  const t = dcTracks[idx];
+  dcTrackTitle.textContent  = t.title;
+  dcTrackArtist.textContent = t.artist;
+  dcArtInner.innerHTML = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="10" stroke="${t.color}" stroke-width="1.5" opacity="0.3"/>
+    <circle cx="12" cy="12" r="3" fill="${t.color}"/>
+    <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" stroke="${t.color}" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+  </svg>`;
+  if (t.src) { dcAudio.src = t.src; dcAudio.load(); } else { dcAudio.src = ''; }
+  dcProgressFill.style.width = '0%';
+  dcTimeCur.textContent = '0:00';
+  dcTimeDur.textContent = '--:--';
+  dcBuildPlaylist();
+}
+
+dcAudio.addEventListener('timeupdate', () => {
+  if (dcAudio.duration) {
+    dcProgressFill.style.width = (dcAudio.currentTime / dcAudio.duration * 100) + '%';
+    dcTimeCur.textContent = dcFmt(dcAudio.currentTime);
+    dcTimeDur.textContent = dcFmt(dcAudio.duration);
+  }
+});
+dcAudio.addEventListener('loadedmetadata', () => { dcTimeDur.textContent = dcFmt(dcAudio.duration); });
+dcAudio.addEventListener('ended', () => { dcCurrent = (dcCurrent+1) % dcTracks.length; dcLoad(dcCurrent); dcSetPlay(true); });
+
+function dcSetPlay(state) {
+  dcPlaying = state;
+  dcIconPlay.style.display  = state ? 'none'  : '';
+  dcIconPause.style.display = state ? ''      : 'none';
+  if (state) {
+    dcAlbumArt.classList.add('spinning');
+    dcEqBars.classList.remove('paused');
+    if (dcTracks[dcCurrent].src) dcAudio.play().catch(()=>{});
+  } else {
+    dcAlbumArt.classList.remove('spinning');
+    dcEqBars.classList.add('paused');
+    dcAudio.pause();
+  }
+  dcBuildPlaylist();
+}
+
+dcToggleBtn.addEventListener('click', () => {
+  dcPanelOpen = !dcPanelOpen;
+  dcPanel.classList.toggle('dc-hidden', !dcPanelOpen);
+  dcIconMusic.style.display = dcPanelOpen ? 'none' : '';
+  dcIconClose.style.display = dcPanelOpen ? ''     : 'none';
+});
+
+dcBtnPlay.addEventListener('click', () => dcSetPlay(!dcPlaying));
+dcBtnNext.addEventListener('click', () => { dcCurrent=(dcCurrent+1)%dcTracks.length; dcLoad(dcCurrent); if(dcPlaying) dcSetPlay(true); });
+dcBtnPrev.addEventListener('click', () => {
+  if (dcAudio.currentTime > 3) { dcAudio.currentTime=0; }
+  else { dcCurrent=(dcCurrent-1+dcTracks.length)%dcTracks.length; dcLoad(dcCurrent); if(dcPlaying) dcSetPlay(true); }
+});
+dcVolSlider.addEventListener('input', () => { dcAudio.volume = dcVolSlider.value/100; });
+dcProgressWrap.addEventListener('click', (e) => {
+  if (dcAudio.duration) {
+    const r = dcProgressWrap.getBoundingClientRect();
+    dcAudio.currentTime = ((e.clientX - r.left) / r.width) * dcAudio.duration;
+  }
+});
+
+/* Init: panel hidden, load first track */
+dcPanel.classList.add('dc-hidden');
+dcLoad(0);
 </script>
 </body>
 </html>
