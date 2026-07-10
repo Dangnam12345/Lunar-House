@@ -3,21 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lunar House — Discord Gaming & Community</title>
+<title>Lunar House — Xóm Gamer Dễ Thương 🌙</title>
 <link rel="icon" type="image/png" href="https://i.postimg.cc/sj48cphb/d37d08ae-c6af-49d1-b196-69606048f45c.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #050810;
-    --bg2: #080d1a;
-    --card: #0d1428;
-    --border: rgba(99,179,255,0.13);
-    --accent: #00d4ff;
-    --accent2: #7c3aed;
-    --accent3: #ff4d6d;
-    --gold: #f5a623;
-    --text: #e8edf8;
-    --muted: #7a8ba8;
-    --glow: 0 0 40px rgba(0,212,255,0.25);
+    --bg: #FAF6FF;
+    --bg-soft: #F1E7FE;
+    --card: #FFFFFF;
+    --border: #E5D4FB;
+    --pink: #B98BF0;
+    --pink-deep: #8E4FE0;
+    --lav: #C9AEF7;
+    --lav-deep: #9B6EF0;
+    --peach: #FFC98B;
+    --mint: #8FE0C2;
+    --mint-deep: #5FCBA3;
+    --yellow: #FFD86B;
+    --text: #4A3A5C;
+    --muted: #9788AC;
+    --shadow: 0 10px 30px rgba(155, 110, 240, 0.2);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,36 +33,32 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     overflow-x: hidden;
     cursor: default;
   }
 
-  /* ===== NOISE OVERLAY ===== */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.6;
-  }
-
-  /* ===== ANIMATED BG GRID ===== */
+  /* ===== SOFT DOTS BACKGROUND ===== */
   .grid-bg {
     position: fixed;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-image: radial-gradient(circle, rgba(255,158,192,0.18) 2px, transparent 2.2px);
+    background-size: 34px 34px;
     z-index: 0;
-    animation: gridShift 20s linear infinite;
+    pointer-events: none;
   }
-  @keyframes gridShift {
-    0% { background-position: 0 0; }
-    100% { background-position: 60px 60px; }
+
+  /* floating decor shapes */
+  .float-shape {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.9;
+    animation: floaty 6s ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-16px) rotate(6deg); }
   }
 
   /* ===== NAV ===== */
@@ -68,57 +70,49 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 48px;
-    height: 72px;
-    background: rgba(5,8,16,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
+    height: 76px;
+    background: rgba(255, 248, 241, 0.9);
+    backdrop-filter: blur(14px);
+    border-bottom: 3px solid var(--border);
   }
 
   .nav-logo {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    color: var(--pink-deep);
+    display: flex;
+    align-items: center;
   }
 
   .nav-links {
     display: flex;
-    gap: 36px;
+    align-items: center;
+    gap: 30px;
     list-style: none;
   }
 
   .nav-links a {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Baloo 2', sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
+    color: var(--text);
     text-decoration: none;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover { color: var(--pink-deep); }
 
   .nav-cta {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
     color: #fff !important;
     padding: 10px 24px;
-    border-radius: 6px;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: opacity 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 20px rgba(0,212,255,0.3);
-    -webkit-text-fill-color: #fff;
+    border-radius: 100px;
+    font-weight: 700 !important;
+    box-shadow: 0 6px 16px rgba(255, 111, 165, 0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .nav-cta:hover { opacity: 0.85; box-shadow: 0 0 32px rgba(0,212,255,0.5); }
+  .nav-cta:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 22px rgba(255, 111, 165, 0.45); color: #fff !important; }
 
   /* ===== HERO ===== */
   .hero {
@@ -130,79 +124,50 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 120px 24px 80px;
+    padding: 130px 24px 80px;
     overflow: hidden;
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse 4s ease-in-out infinite;
-  }
-  .hero-glow2 {
-    position: absolute;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
-    top: 30%; left: 20%;
-    animation: pulse 6s ease-in-out infinite reverse;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
   }
 
   .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(0,212,255,0.08);
-    border: 1px solid rgba(0,212,255,0.25);
-    padding: 8px 20px;
+    background: #fff;
+    border: 2px solid var(--border);
+    padding: 10px 22px;
     border-radius: 100px;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--accent);
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--pink-deep);
     margin-bottom: 28px;
+    box-shadow: var(--shadow);
     animation: fadeUp 0.8s ease both;
   }
 
   .dot-live {
-    width: 8px; height: 8px;
+    width: 9px; height: 9px;
     border-radius: 50%;
-    background: #00ff88;
+    background: var(--mint-deep);
     animation: blink 1.5s ease infinite;
   }
-  @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+  @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
 
-    .hero h1 {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: clamp(4rem, 10vw, 8rem);
-    line-height: 1.05;
-    letter-spacing: -1px;
-    margin-bottom: 12px;
+  .hero h1 {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    line-height: 1.1;
+    color: var(--pink-deep);
+    text-shadow: 4px 4px 0px var(--yellow);
+    margin-bottom: 20px;
     animation: fadeUp 0.9s 0.1s ease both;
-  }
-
-  .hero h1 span {
-    background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 50%, var(--accent3) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
   .hero-sub {
     font-size: 1.15rem;
-    color: var(--muted);
+    font-weight: 500;
+    color: var(--text);
     max-width: 560px;
     line-height: 1.7;
     margin: 0 auto 44px;
@@ -221,79 +186,35 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
     color: #fff;
     text-decoration: none;
     padding: 16px 36px;
-    border-radius: 8px;
-    font-family: 'Rajdhani', sans-serif;
+    border-radius: 100px;
+    font-family: 'Baloo 2', sans-serif;
     font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-size: 1.05rem;
     transition: all 0.3s;
-    box-shadow: 0 0 30px rgba(0,212,255,0.35), 0 4px 20px rgba(0,0,0,0.4);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(255, 111, 165, 0.4);
   }
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.12), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
-  }
-  .btn-primary:hover::after { transform: translateX(100%); }
-  .btn-primary:hover { box-shadow: 0 0 50px rgba(0,212,255,0.5), 0 8px 30px rgba(0,0,0,0.5); transform: translateY(-2px); }
+  .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 28px rgba(255, 111, 165, 0.5); }
 
   .btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: transparent;
+    background: #fff;
     color: var(--text);
     text-decoration: none;
     padding: 16px 36px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    font-family: 'Rajdhani', sans-serif;
+    border-radius: 100px;
+    border: 2px solid var(--border);
+    font-family: 'Baloo 2', sans-serif;
     font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-size: 1.05rem;
     transition: all 0.3s;
   }
-  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.05); }
-
-  .hero-stats {
-    display: flex;
-    gap: 48px;
-    justify-content: center;
-    margin-top: 72px;
-    flex-wrap: wrap;
-    animation: fadeUp 1s 0.5s ease both;
-  }
-
-  .stat {
-    text-align: center;
-  }
-  .stat-num {
-    font-family: 'Orbitron', monospace;
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--accent);
-    text-shadow: 0 0 20px rgba(0,212,255,0.5);
-  }
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 4px;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 600;
-  }
+  .btn-secondary:hover { border-color: var(--pink); color: var(--pink-deep); transform: translateY(-2px); }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -301,56 +222,44 @@
   }
 
   /* ===== SECTIONS ===== */
-  section {
-    position: relative;
-    z-index: 1;
-  }
+  section { position: relative; z-index: 1; }
 
-  .section-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
+  .section-header { text-align: center; margin-bottom: 56px; }
 
   .section-tag {
     display: inline-block;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Baloo 2', sans-serif;
     font-weight: 700;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: rgba(0,212,255,0.08);
-    border: 1px solid rgba(0,212,255,0.2);
-    padding: 6px 16px;
-    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--pink-deep);
+    background: var(--bg-soft);
+    border: 2px solid var(--border);
+    padding: 6px 18px;
+    border-radius: 100px;
     margin-bottom: 16px;
   }
 
   .section-header h2 {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(1.6rem, 3vw, 2.6rem);
-    font-weight: 900;
-    line-height: 1.2;
-    margin-bottom: 16px;
+    font-family: 'Baloo 2', sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--text);
+    margin-bottom: 14px;
   }
 
   .section-header p {
     color: var(--muted);
+    font-weight: 500;
     max-width: 540px;
     margin: 0 auto;
     line-height: 1.7;
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
 
   /* ===== FEATURES ===== */
-  .features {
-    padding: 100px 0;
-  }
+  .features { padding: 90px 0; }
 
   .features-grid {
     display: grid;
@@ -360,191 +269,136 @@
 
   .feature-card {
     background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 36px 32px;
-    transition: all 0.4s;
-    position: relative;
-    overflow: hidden;
+    border: 3px solid var(--border);
+    border-radius: 28px;
+    padding: 34px 30px;
+    transition: all 0.3s;
   }
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent)), transparent);
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
-  .feature-card:hover::before { opacity: 1; }
   .feature-card:hover {
-    border-color: rgba(0,212,255,0.25);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,212,255,0.08);
+    border-color: var(--card-accent, var(--pink));
+    transform: translateY(-6px) rotate(-0.5deg);
+    box-shadow: 0 16px 32px rgba(255, 158, 192, 0.22);
   }
+  .feature-card.purple { --card-accent: var(--lav); }
+  .feature-card.red { --card-accent: var(--pink-deep); }
+  .feature-card.gold { --card-accent: var(--peach); }
+  .feature-card.mint { --card-accent: var(--mint-deep); }
 
-  .feature-card.purple { --card-accent: var(--accent2); }
-  .feature-card.purple:hover { border-color: rgba(124,58,237,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(124,58,237,0.1); }
-  .feature-card.red { --card-accent: var(--accent3); }
-  .feature-card.red:hover { border-color: rgba(255,77,109,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,77,109,0.1); }
-  .feature-card.gold { --card-accent: var(--gold); }
-  .feature-card.gold:hover { border-color: rgba(245,166,35,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(245,166,35,0.1); }
-
-  .feature-icon {
-    font-size: 2.4rem;
-    margin-bottom: 20px;
-    display: block;
+  .feature-icon-wrap {
+    width: 58px; height: 58px;
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 18px;
+    background: var(--card-accent, var(--pink));
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
   }
 
   .feature-card h3 {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Baloo 2', sans-serif;
     font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 10px;
   }
 
   .feature-card p {
     color: var(--muted);
-    font-size: 0.92rem;
+    font-weight: 500;
+    font-size: 0.94rem;
     line-height: 1.7;
   }
 
   /* ===== CHANNELS PREVIEW ===== */
-  .channels-section {
-    padding: 100px 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(13,20,40,0.6) 50%, transparent 100%);
-  }
+  .channels-section { padding: 90px 0; }
 
   .discord-preview {
-    background: #1e2124;
-    border-radius: 16px;
+    background: #fff;
+    border-radius: 28px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.06);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    border: 3px solid var(--border);
+    box-shadow: 0 24px 50px rgba(255,158,192,0.2);
     display: flex;
     max-width: 860px;
     margin: 0 auto;
   }
 
-  .sidebar {
-    width: 220px;
-    background: #2f3136;
-    flex-shrink: 0;
-    padding: 16px 0;
-  }
+  .sidebar { width: 220px; background: var(--bg-soft); flex-shrink: 0; padding: 16px 0; }
 
   .server-name {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Baloo 2', sans-serif;
     font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-    color: #fff;
+    font-size: 1rem;
+    color: var(--pink-deep);
     padding: 12px 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 2px solid var(--border);
     margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
   }
 
   .category {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Baloo 2', sans-serif;
     font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #72767d;
-    padding: 8px 16px 4px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    padding: 10px 16px 4px;
   }
 
   .channel-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 16px;
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 16px;
     font-size: 0.9rem;
-    color: #8e9297;
+    font-weight: 500;
+    color: var(--text);
     cursor: pointer;
     transition: all 0.2s;
-    border-radius: 4px;
-    margin: 1px 8px;
+    border-radius: 10px;
+    margin: 2px 8px;
   }
-  .channel-item:hover, .channel-item.active {
-    background: rgba(255,255,255,0.06);
-    color: #dcddde;
-  }
-  .channel-item.active { background: rgba(255,255,255,0.1); color: #fff; }
+  .channel-item:hover, .channel-item.active { background: #fff; color: var(--pink-deep); }
+  .channel-item.active { background: #fff; box-shadow: 0 2px 8px rgba(255,158,192,0.25); font-weight: 700; }
 
-  .channel-hash { color: #72767d; font-size: 1.1rem; }
+  .channel-hash { color: var(--muted); font-size: 1.05rem; }
 
-  .main-chat {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: #36393f;
-  }
+  .main-chat { flex: 1; display: flex; flex-direction: column; background: #fffdfb; }
 
   .chat-header {
-    padding: 14px 20px;
-    border-bottom: 1px solid rgba(0,0,0,0.25);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #36393f;
+    padding: 16px 20px;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+    background: #fff;
   }
+  .chat-header span { font-weight: 700; font-size: 0.95rem; font-family: 'Baloo 2', sans-serif; }
+  .chat-header .desc { color: var(--muted); font-size: 0.8rem; margin-left: 8px; font-weight: 500; }
 
-  .chat-header span { font-weight: 600; font-size: 0.95rem; }
-  .chat-header .desc { color: #72767d; font-size: 0.8rem; margin-left: 8px; }
-
-  .messages {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    overflow: hidden;
-  }
-
-  .msg {
-    display: flex;
-    gap: 12px;
-  }
+  .messages { flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
+  .msg { display: flex; gap: 12px; }
 
   .avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
+    width: 38px; height: 38px;
+    border-radius: 14px;
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.05rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
   }
 
-  .msg-body {}
-  .msg-name {
-    font-weight: 600;
-    font-size: 0.85rem;
-    margin-bottom: 3px;
-  }
-  .msg-name span { font-size: 0.7rem; color: #72767d; font-weight: 400; margin-left: 8px; }
-  .msg-text { color: #dcddde; font-size: 0.88rem; line-height: 1.5; }
+  .msg-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 3px; font-family: 'Baloo 2', sans-serif; }
+  .msg-name span { font-size: 0.7rem; color: var(--muted); font-weight: 500; margin-left: 8px; }
+  .msg-text { color: var(--text); font-size: 0.88rem; line-height: 1.6; font-weight: 500; }
 
   .badge-role {
     display: inline-block;
-    font-size: 0.65rem;
-    padding: 2px 7px;
-    border-radius: 3px;
+    font-size: 0.62rem;
+    padding: 3px 8px;
+    border-radius: 100px;
     margin-right: 6px;
     font-weight: 700;
-    letter-spacing: 0.5px;
   }
 
   /* ===== RULES ===== */
-  .rules-section {
-    padding: 100px 0;
-  }
+  .rules-section { padding: 90px 0; }
 
   .rules-grid {
     display: grid;
@@ -555,80 +409,60 @@
   }
 
   .rule-item {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
+    display: flex; gap: 18px; align-items: flex-start;
     background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    border: 3px solid var(--border);
+    border-radius: 22px;
     padding: 24px;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
   }
-  .rule-item:hover { border-color: rgba(0,212,255,0.2); }
+  .rule-item:hover { border-color: var(--pink); transform: translateY(-3px); }
 
-  .rule-num {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: var(--accent);
-    opacity: 0.5;
+  .rule-emoji {
+    font-size: 1.8rem;
     flex-shrink: 0;
-    line-height: 1;
-    margin-top: 2px;
+    width: 46px; height: 46px;
+    border-radius: 14px;
+    background: var(--bg-soft);
+    display: flex; align-items: center; justify-content: center;
   }
 
   .rule-item h4 {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Baloo 2', sans-serif;
     font-weight: 700;
     font-size: 1rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    color: var(--text);
     margin-bottom: 6px;
   }
-
-  .rule-item p {
-    color: var(--muted);
-    font-size: 0.88rem;
-    line-height: 1.6;
-  }
+  .rule-item p { color: var(--muted); font-size: 0.88rem; font-weight: 500; line-height: 1.6; }
 
   /* ===== JOIN ===== */
-  .join-section {
-    padding: 120px 0;
-    text-align: center;
-  }
+  .join-section { padding: 110px 0; text-align: center; }
 
   .join-box {
-    background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(124,58,237,0.08));
-    border: 1px solid rgba(0,212,255,0.15);
-    border-radius: 24px;
-    padding: 80px 48px;
+    background: linear-gradient(135deg, var(--bg-soft), #FFF3E4);
+    border: 3px solid var(--border);
+    border-radius: 32px;
+    padding: 76px 48px;
     max-width: 700px;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
   }
-  .join-box::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle at center, rgba(0,212,255,0.05) 0%, transparent 60%);
-    animation: rotate 15s linear infinite;
-  }
-  @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
   .join-box h2 {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--text);
     margin-bottom: 16px;
     position: relative;
   }
 
   .join-box p {
     color: var(--muted);
-    margin-bottom: 40px;
+    font-weight: 500;
+    margin-bottom: 36px;
     line-height: 1.7;
     position: relative;
   }
@@ -637,73 +471,52 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: #5865F2;
+    background: linear-gradient(135deg, var(--lav), var(--lav-deep));
     color: #fff;
     text-decoration: none;
     padding: 18px 48px;
-    border-radius: 10px;
-    font-family: 'Rajdhani', sans-serif;
+    border-radius: 100px;
+    font-family: 'Baloo 2', sans-serif;
     font-weight: 700;
     font-size: 1.1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
     transition: all 0.3s;
-    box-shadow: 0 8px 32px rgba(88,101,242,0.4);
+    box-shadow: 0 10px 26px rgba(155, 130, 237, 0.4);
     position: relative;
   }
-  .discord-link:hover {
-    background: #4752c4;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(88,101,242,0.6);
-  }
+  .discord-link:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 30px rgba(155, 130, 237, 0.5); }
 
-  /* Discord icon SVG inline */
-  .discord-icon {
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
+  .discord-icon { display: inline-flex; align-items: center; flex-shrink: 0; }
 
   /* ===== FOOTER ===== */
   footer {
     position: relative;
     z-index: 1;
-    border-top: 1px solid var(--border);
+    border-top: 3px solid var(--border);
     padding: 40px 32px;
     text-align: center;
     color: var(--muted);
+    font-weight: 500;
     font-size: 0.85rem;
   }
-
   footer .footer-logo {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 1.1rem;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--pink-deep);
     margin-bottom: 8px;
   }
 
   /* SCROLL FADE */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
 
   @media (max-width: 700px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
     .discord-preview { flex-direction: column; }
     .sidebar { width: 100%; }
-    .hero-stats { gap: 24px; }
     .join-box { padding: 48px 24px; }
+    .float-shape { display: none; }
   }
 </style>
 </head>
@@ -711,12 +524,18 @@
 
 <div class="grid-bg"></div>
 
+<!-- floating decor -->
+<div class="float-shape" style="top:14%; left:6%; font-size:2.4rem; animation-delay:0s;">⭐</div>
+<div class="float-shape" style="top:22%; right:8%; font-size:2rem; animation-delay:1.5s;">☁️</div>
+<div class="float-shape" style="top:65%; left:4%; font-size:2.2rem; animation-delay:0.8s;">🌸</div>
+<div class="float-shape" style="top:75%; right:6%; font-size:2.4rem; animation-delay:2s;">✨</div>
+
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-  <span style="-webkit-text-fill-color: initial; -webkit-background-clip: initial; background-clip: initial; margin-right: 5px;">🌙</span>
-  <span>Lunar House</span>
-</div>
+    <span style="margin-right:6px;">🌙</span>
+    <span>Lunar House</span>
+  </div>
   <ul class="nav-links">
     <li><a href="#features">Tính năng</a></li>
     <li><a href="#channels">Kênh</a></li>
@@ -727,28 +546,24 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-
   <div class="hero-badge">
     <span class="dot-live"></span>
     Server đang hoạt động
   </div>
 
   <h1>
-    Lunar House<br>
+    Lunar House 🌙<br>
     <span></span>
   </h1>
 
   <p class="hero-sub">
     Nơi game thủ tụ họp — chơi game, mua bán items, tán gẫu vui vẻ
-    và tìm kiếm những người bạn thật sự đến từ khắp Việt Nam.
+    và tìm kiếm những người bạn thật sự đến từ khắp Việt Nam. 🧸💕
   </p>
 
   <div class="hero-buttons">
     <a href="#join" class="btn-primary">
-      <!-- Discord logo SVG với 2 "mắt" đầy đủ -->
-      <svg class="discord-icon" width="22" height="22" viewBox="0 0 127.14 96.36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <svg class="discord-icon" width="20" height="20" viewBox="0 0 127.14 96.36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
       </svg>
       Vào Discord
@@ -764,43 +579,43 @@
   <div class="container">
     <div class="section-header reveal">
       <div class="section-tag">Tính năng nổi bật</div>
-      <h2>Mọi thứ bạn cần<br>trong một server</h2>
+      <h2>Mọi thứ bạn cần<br>trong một server 🎀</h2>
       <p>Từ mua bán đến tìm party, từ tán gẫu đến tournament — Lunar House có tất cả.</p>
     </div>
 
     <div class="features-grid">
       <div class="feature-card reveal" style="transition-delay:0.05s">
-        <span class="feature-icon">🎮</span>
+        <div class="feature-icon-wrap">🎮</div>
         <h3>Gaming Together</h3>
         <p>Tìm đồng đội cùng rank, lập party, tổ chức tournament. VALORANT, PUBG, LOL, Free Fire — tất cả đều có kênh riêng.</p>
       </div>
 
       <div class="feature-card purple reveal" style="transition-delay:0.1s">
-        <span class="feature-icon">💰</span>
+        <div class="feature-icon-wrap">💰</div>
         <h3>Marketplace</h3>
         <p>Mua bán tài khoản, skin, items, gift card, nạp thẻ an toàn. Hệ thống xác minh seller đảm bảo giao dịch minh bạch.</p>
       </div>
 
       <div class="feature-card red reveal" style="transition-delay:0.15s">
-        <span class="feature-icon">💬</span>
+        <div class="feature-icon-wrap">💬</div>
         <h3>Trò chuyện thoải mái</h3>
         <p>Kênh voice, text, meme, âm nhạc. Xả stress sau một ngày học, làm việc hay rank thua liên tiếp.</p>
       </div>
 
       <div class="feature-card gold reveal" style="transition-delay:0.2s">
-        <span class="feature-icon">🤝</span>
+        <div class="feature-icon-wrap">🤝</div>
         <h3>Tìm bạn mới</h3>
         <p>Kênh giới thiệu bản thân, ghép đôi game, kết nối cộng đồng. Không cô đơn khi chơi game một mình nữa!</p>
       </div>
 
-      <div class="feature-card reveal" style="transition-delay:0.25s">
-        <span class="feature-icon">🏆</span>
+      <div class="feature-card mint reveal" style="transition-delay:0.25s">
+        <div class="feature-icon-wrap">🏆</div>
         <h3>Tournament & Events</h3>
         <p>Giải đấu hàng tuần, sự kiện theo mùa, giveaway độc quyền. Thắng để nhận quà và danh hiệu đặc biệt.</p>
       </div>
 
       <div class="feature-card purple reveal" style="transition-delay:0.3s">
-        <span class="feature-icon">🤖</span>
+        <div class="feature-icon-wrap">🤖</div>
         <h3>Bot thông minh</h3>
         <p>Hệ thống kinh tế server, mini-game, nhạc bot, rank tự động và nhiều lệnh hữu ích giúp trải nghiệm tốt hơn.</p>
       </div>
@@ -813,12 +628,11 @@
   <div class="container">
     <div class="section-header reveal">
       <div class="section-tag">Kênh chat</div>
-      <h2>Server</h2>
+      <h2>Server 🏠</h2>
       <p>Cộng đồng thân thiện, chat sôi động 24/7.</p>
     </div>
 
     <div class="discord-preview reveal">
-      <!-- Sidebar -->
       <div class="sidebar">
         <div class="server-name">🌙 Lunar House</div>
 
@@ -844,46 +658,45 @@
         <div class="channel-item"><span class="channel-hash">#</span> gift-card</div>
       </div>
 
-      <!-- Chat -->
       <div class="main-chat">
         <div class="chat-header">
-          <span style="color:#72767d">#</span>
+          <span style="color:var(--muted)">#</span>
           <span>general</span>
           <span class="desc">Trò chuyện thoải mái về mọi thứ</span>
         </div>
         <div class="messages">
           <div class="msg">
-            <div class="avatar" style="background:#5865F2">🐉</div>
+            <div class="avatar" style="background:var(--lav)">🐉</div>
             <div class="msg-body">
-              <div class="msg-name" style="color:#5865F2">DragonSlayer <span>hôm nay lúc 21:05</span></div>
-              <div class="msg-text"><span class="badge-role" style="background:rgba(255,77,109,0.2);color:#ff4d6d">🏆 Admin</span> Chào mừng mọi người! Tối nay có tournament VALORANT lúc 8h tối, ai muốn đăng ký tag mình nhé! 🎮</div>
+              <div class="msg-name" style="color:var(--lav-deep)">DragonSlayer <span>hôm nay lúc 21:05</span></div>
+              <div class="msg-text"><span class="badge-role" style="background:#F1E7FE;color:var(--pink-deep)">🏆 Admin</span> Chào mừng mọi người! Tối nay có tournament VALORANT lúc 8h tối, ai muốn đăng ký tag mình nhé! 🎮</div>
             </div>
           </div>
           <div class="msg">
-            <div class="avatar" style="background:#f5a623">🌸</div>
+            <div class="avatar" style="background:var(--peach)">🌸</div>
             <div class="msg-body">
-              <div class="msg-name" style="color:#f5a623">Sakura_VN <span>hôm nay lúc 21:06</span></div>
+              <div class="msg-name" style="color:#D98A3D">Sakura_VN <span>hôm nay lúc 21:06</span></div>
               <div class="msg-text">Đăng ký liền! Mình chơi Jett main 😤 Silver 3 thôi nhưng cố gắng hết mình</div>
             </div>
           </div>
           <div class="msg">
-            <div class="avatar" style="background:#00d4ff">⚡</div>
+            <div class="avatar" style="background:var(--mint)">⚡</div>
             <div class="msg-body">
-              <div class="msg-name" style="color:#00d4ff">NightOwl99 <span>hôm nay lúc 21:08</span></div>
-              <div class="msg-text"><span class="badge-role" style="background:rgba(0,212,255,0.15);color:#00d4ff">💰 Seller</span> Ai cần acc Valorant Gold rank không? Đang có giá tốt ở kênh #acc-sell nha mọi người 👀</div>
+              <div class="msg-name" style="color:var(--mint-deep)">NightOwl99 <span>hôm nay lúc 21:08</span></div>
+              <div class="msg-text"><span class="badge-role" style="background:#DFF6EC;color:var(--mint-deep)">💰 Seller</span> Ai cần acc Valorant Gold rank không? Đang có giá tốt ở kênh #acc-sell nha mọi người 👀</div>
             </div>
           </div>
           <div class="msg">
-            <div class="avatar" style="background:#7c3aed">🎵</div>
+            <div class="avatar" style="background:var(--pink)">🎵</div>
             <div class="msg-body">
-              <div class="msg-name" style="color:#a78bfa">PhongThuy <span>hôm nay lúc 21:09</span></div>
+              <div class="msg-name" style="color:var(--pink-deep)">PhongThuy <span>hôm nay lúc 21:09</span></div>
               <div class="msg-text">Mới vào server hôm nay, mọi người thân thiện quá 🥺 Mình tìm bạn chơi PUBG mobile ai cùng chơi không?</div>
             </div>
           </div>
           <div class="msg">
-            <div class="avatar" style="background:#ff4d6d">🔥</div>
+            <div class="avatar" style="background:#FFB4B4">🔥</div>
             <div class="msg-body">
-              <div class="msg-name" style="color:#ff6b6b">xXDarkXx <span>hôm nay lúc 21:11</span></div>
+              <div class="msg-name" style="color:#E8637A">xXDarkXx <span>hôm nay lúc 21:11</span></div>
               <div class="msg-text">@PhongThuy mình chơi nè! Add bạn liền 😎 Phong rank mấy rồi?</div>
             </div>
           </div>
@@ -898,48 +711,48 @@
   <div class="container">
     <div class="section-header reveal">
       <div class="section-tag">Nội quy</div>
-      <h2>Để server luôn vui vẻ</h2>
+      <h2>Để server luôn vui vẻ 🎈</h2>
       <p>Vài quy định đơn giản để mọi người có trải nghiệm tốt nhất.</p>
     </div>
 
     <div class="rules-grid">
       <div class="rule-item reveal" style="transition-delay:0.05s">
-        <div class="rule-num">01</div>
+        <div class="rule-emoji">🤗</div>
         <div>
           <h4>Tôn trọng lẫn nhau</h4>
           <p>Không toxic, không chửi bới, không phân biệt. Đây là không gian an toàn cho tất cả mọi người.</p>
         </div>
       </div>
       <div class="rule-item reveal" style="transition-delay:0.1s">
-        <div class="rule-num">02</div>
+        <div class="rule-emoji">🗂️</div>
         <div>
           <h4>Đúng kênh đúng chủ đề</h4>
           <p>Mua bán ở kênh marketplace, game ở kênh gaming. Giúp mọi người dễ tìm thông tin hơn.</p>
         </div>
       </div>
       <div class="rule-item reveal" style="transition-delay:0.15s">
-        <div class="rule-num">03</div>
+        <div class="rule-emoji">🛡️</div>
         <div>
           <h4>Giao dịch an toàn</h4>
           <p>Seller cần xác minh trước khi đăng bán. Không spam quảng cáo, không lừa đảo — ban vĩnh viễn.</p>
         </div>
       </div>
       <div class="rule-item reveal" style="transition-delay:0.2s">
-        <div class="rule-num">04</div>
+        <div class="rule-emoji">🔗</div>
         <div>
           <h4>Không chia sẻ link lạ</h4>
           <p>Không spam link, không malware, không phishing. Bảo vệ cộng đồng khỏi những rủi ro online.</p>
         </div>
       </div>
       <div class="rule-item reveal" style="transition-delay:0.25s">
-        <div class="rule-num">05</div>
+        <div class="rule-emoji">🌈</div>
         <div>
           <h4>Nội dung phù hợp</h4>
           <p>NSFW chỉ ở kênh 18+ đã được chỉ định. Giữ nội dung chung thân thiện với mọi lứa tuổi.</p>
         </div>
       </div>
       <div class="rule-item reveal" style="transition-delay:0.3s">
-        <div class="rule-num">06</div>
+        <div class="rule-emoji">🎉</div>
         <div>
           <h4>Có fun, đừng drama</h4>
           <p>Server này để giải trí và kết bạn. Mâu thuẫn cá nhân thì nhắn tin riêng, đừng làm ảnh hưởng chung.</p>
@@ -953,11 +766,10 @@
 <section class="join-section" id="join">
   <div class="container">
     <div class="join-box reveal">
-      <h2>Sẵn sàng tham gia?<br><span style="background:linear-gradient(135deg,#00d4ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Join ngay hôm nay!</span></h2>
+      <h2>Sẵn sàng tham gia? 🌙<br><span style="color:var(--pink-deep);">Join ngay hôm nay!</span></h2>
       <p>Hơn 5,200 game thủ đang chờ bạn. Click vào để vào server Discord của chúng tôi — miễn phí, không giới hạn!</p>
-      <a href="https://discord.gg/lunarhouse" class="discord-link" target="_blank">
-        <!-- Discord official logo với 2 mắt -->
-        <svg width="26" height="20" viewBox="0 0 127.14 96.36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <a href="https://discord.gg/eybufsdZxj" class="discord-link" target="_blank">
+        <svg width="24" height="18" viewBox="0 0 127.14 96.36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
         </svg>
         Tham gia Discord ngay
@@ -968,27 +780,17 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-  <span style="-webkit-text-fill-color: initial; -webkit-background-clip: initial; background-clip: initial;">🌙</span> 
-  Lunar House
-</div>
+  <div class="footer-logo">🌙 Lunar House</div>
   <p>© 2026 Lunar House Discord Server — Cộng đồng gaming Việt Nam</p>
-  <p style="margin-top:8px; font-size:0.78rem;">Made with ❤️ for gamers</p>
+  <p style="margin-top:8px; font-size:0.78rem;">Made with 💕 for gamers</p>
 </footer>
 
-<!-- ===== MUSIC PLAYER (Cyber Core style) ===== -->
+<!-- ===== MUSIC PLAYER (Cute style) ===== -->
 <div id="music-player">
   <div id="player-panel">
-    <!-- Top row: album art + track info + eq bars -->
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
       <div class="dc-album-art" id="dcAlbumArt">
-        <div class="dc-art-inner" id="dcArtInner">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" stroke="#00d4ff" stroke-width="1.5" opacity="0.3"/>
-            <circle cx="12" cy="12" r="3" fill="#00d4ff"/>
-            <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-          </svg>
-        </div>
+        <div class="dc-art-inner" id="dcArtInner">🌙</div>
       </div>
       <div style="flex:1;min-width:0;">
         <div class="dc-track-title" id="dcTrackTitle">Lofi Gaming Vibes</div>
@@ -1002,7 +804,6 @@
       </div>
     </div>
 
-    <!-- Progress bar -->
     <div class="dc-progress-wrap" id="dcProgressWrap">
       <div class="dc-progress-fill" id="dcProgressFill" style="width:0%"></div>
     </div>
@@ -1011,7 +812,6 @@
       <span class="dc-time" id="dcTimeDur">--:--</span>
     </div>
 
-    <!-- Controls -->
     <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;">
       <button class="dc-ctrl-btn" id="dcBtnPrev" title="Bài trước">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
@@ -1024,27 +824,23 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
       </button>
       <div style="display:flex;align-items:center;gap:6px;margin-left:8px;">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#7a8ba8"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#A8909E"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
         <input type="range" class="dc-vol-slider" id="dcVolSlider" min="0" max="100" value="70">
       </div>
     </div>
 
-    <!-- Playlist -->
-    <div style="margin-top:10px;border-top:1px solid rgba(0,212,255,0.08);padding-top:8px;">
+    <div style="margin-top:10px;border-top:2px solid var(--border);padding-top:8px;">
       <div id="dcPlaylist" style="display:flex;flex-direction:column;gap:2px;"></div>
     </div>
   </div>
 
-  <!-- Toggle button -->
   <button id="dcToggleBtn" title="Mở/Đóng trình phát nhạc">
-    <svg id="dcIconMusic" width="20" height="20" viewBox="0 0 24 24" fill="#050810"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
-    <svg id="dcIconClose" width="18" height="18" viewBox="0 0 24 24" fill="#050810" style="display:none"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    <svg id="dcIconMusic" width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+    <svg id="dcIconClose" width="18" height="18" viewBox="0 0 24 24" fill="#fff" style="display:none"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
   </button>
 </div>
 
-
 <style>
-/* ===== MUSIC PLAYER — CYBER CORE STYLE ===== */
 #music-player {
   position: fixed;
   bottom: 1.5rem;
@@ -1054,82 +850,60 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 0.5rem;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 #player-panel {
-  background: rgba(5, 8, 16, 0.93);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 212, 255, 0.18);
-  border-radius: 1.25rem;
+  background: #fff;
+  border: 3px solid var(--border);
+  border-radius: 1.5rem;
   padding: 1rem 1.1rem;
   width: 280px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,255,0.05);
+  box-shadow: 0 12px 32px rgba(255,158,192,0.25);
   transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
   transform-origin: bottom right;
 }
-#player-panel.dc-hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.92) translateY(10px);
-}
+#player-panel.dc-hidden { opacity: 0; pointer-events: none; transform: scale(0.92) translateY(10px); }
 
 #dcToggleBtn {
-  width: 46px; height: 46px;
+  width: 50px; height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  background: linear-gradient(135deg, var(--pink), var(--lav));
   border: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.35);
+  box-shadow: 0 6px 18px rgba(255,158,192,0.4);
   transition: all 0.3s;
   flex-shrink: 0;
 }
-#dcToggleBtn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 28px rgba(0, 212, 255, 0.55);
-}
+#dcToggleBtn:hover { transform: scale(1.08) rotate(-6deg); box-shadow: 0 8px 22px rgba(255,158,192,0.55); }
 
-/* Album art */
 .dc-album-art {
-  width: 48px; height: 48px;
-  border-radius: 0.6rem;
-  background: rgba(0, 212, 255, 0.08);
-  border: 1px solid rgba(0, 212, 255, 0.14);
+  width: 50px; height: 50px;
+  border-radius: 16px;
+  background: var(--bg-soft);
+  border: 2px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; flex-shrink: 0; position: relative;
+  font-size: 1.5rem;
 }
-.dc-art-inner {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 0.6rem;
-}
-.dc-album-art.spinning .dc-art-inner {
-  animation: dcSpin 8s linear infinite;
-}
+.dc-art-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.dc-album-art.spinning .dc-art-inner { animation: dcSpin 8s linear infinite; }
 @keyframes dcSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 
-/* Track info */
 .dc-track-title {
-  font-size: 0.82rem; font-weight: 700;
+  font-size: 0.85rem; font-weight: 700; font-family: 'Baloo 2', sans-serif;
   color: var(--text);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   max-width: 160px;
 }
 .dc-track-artist {
-  font-size: 0.7rem; color: var(--muted);
+  font-size: 0.7rem; color: var(--muted); font-weight: 500;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   max-width: 160px; margin-top: 1px;
 }
 
-/* EQ bars */
-.dc-eq-bars {
-  display: flex; align-items: flex-end; gap: 2px; height: 16px;
-}
-.dc-eq-bar {
-  width: 3px; border-radius: 1px;
-  background: var(--accent);
-  transform-origin: bottom;
-}
+.dc-eq-bars { display: flex; align-items: flex-end; gap: 2px; height: 16px; }
+.dc-eq-bar { width: 3px; border-radius: 2px; background: var(--pink-deep); transform-origin: bottom; }
 .dc-eq-bar:nth-child(1) { animation: dcEq 0.8s ease-in-out infinite 0s; height: 100%; }
 .dc-eq-bar:nth-child(2) { animation: dcEq 0.8s ease-in-out infinite 0.15s; height: 80%; }
 .dc-eq-bar:nth-child(3) { animation: dcEq 0.8s ease-in-out infinite 0.3s; height: 100%; }
@@ -1137,66 +911,54 @@
 .dc-eq-bars.paused .dc-eq-bar { animation-play-state: paused; transform: scaleY(0.3); }
 @keyframes dcEq { 0%,100%{transform:scaleY(0.3)} 50%{transform:scaleY(1)} }
 
-/* Progress */
 .dc-progress-wrap {
-  width: 100%; height: 3px;
-  background: rgba(255,255,255,0.08);
+  width: 100%; height: 5px;
+  background: var(--bg-soft);
   border-radius: 9999px; cursor: pointer; position: relative;
   margin-top: 0.5rem;
 }
 .dc-progress-fill {
   height: 100%; border-radius: 9999px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  background: linear-gradient(90deg, var(--pink), var(--lav));
   transition: width 0.3s linear; pointer-events: none;
 }
-.dc-progress-wrap:hover .dc-progress-fill { filter: brightness(1.2); }
 
-/* Time */
-.dc-time {
-  font-size: 0.65rem; color: var(--muted);
-  font-family: 'Orbitron', monospace;
-}
+.dc-time { font-size: 0.65rem; color: var(--muted); font-weight: 600; }
 
-/* Control buttons */
 .dc-ctrl-btn {
   background: none; border: none; cursor: pointer;
   color: var(--muted); padding: 4px;
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%; transition: all 0.2s;
 }
-.dc-ctrl-btn:hover {
-  color: var(--accent);
-  background: rgba(0,212,255,0.08);
-}
+.dc-ctrl-btn:hover { color: var(--pink-deep); background: var(--bg-soft); }
 .dc-play-btn {
-  width: 34px; height: 34px;
-  background: rgba(0, 212, 255, 0.12);
-  border: 1px solid rgba(0, 212, 255, 0.22) !important;
-  color: var(--accent) !important;
+  width: 36px; height: 36px;
+  background: var(--bg-soft);
+  border: 2px solid var(--border) !important;
+  color: var(--pink-deep) !important;
 }
-.dc-play-btn:hover { background: rgba(0, 212, 255, 0.22) !important; }
+.dc-play-btn:hover { background: #F1E7FE !important; }
 
-/* Volume slider */
 .dc-vol-slider {
   -webkit-appearance: none; appearance: none;
-  width: 60px; height: 3px;
+  width: 60px; height: 4px;
   border-radius: 9999px;
-  background: rgba(255,255,255,0.1);
+  background: var(--bg-soft);
   outline: none; cursor: pointer;
 }
 .dc-vol-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--accent); cursor: pointer;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--pink-deep); cursor: pointer;
 }
 .dc-vol-slider::-moz-range-thumb {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--accent); border: none; cursor: pointer;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--pink-deep); border: none; cursor: pointer;
 }
 </style>
 
 <script>
-/* Intersection Observer for reveal */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1207,12 +969,11 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* ===== MUSIC PLAYER LOGIC ===== */
 const dcTracks = [
-  { title: 'Lofi Gaming Vibes',   artist: 'Lunar House Radio 🌙', color: '#00d4ff', src: '' },
-  { title: 'Chill Beats & Pixels',artist: 'Lunar House Radio 🌙', color: '#a78bfa', src: '' },
-  { title: 'Late Night Ranked',   artist: 'Lunar House Radio 🌙', color: '#ff4d6d', src: '' },
-  { title: 'Neon City Dreams',    artist: 'Lunar House Radio 🌙', color: '#f5a623', src: '' },
+  { title: 'Lofi Gaming Vibes',   artist: 'Lunar House Radio 🌙', emoji: '🌙', src: '' },
+  { title: 'Chill Beats & Pixels',artist: 'Lunar House Radio 🌙', emoji: '☁️', src: '' },
+  { title: 'Late Night Ranked',   artist: 'Lunar House Radio 🌙', emoji: '⭐', src: '' },
+  { title: 'Sweet Dreams',        artist: 'Lunar House Radio 🌙', emoji: '🌸', src: '' },
 ];
 
 const dcAudio = new Audio();
@@ -1252,15 +1013,15 @@ function dcBuildPlaylist() {
   dcPlaylist.innerHTML = '';
   dcTracks.forEach((t, i) => {
     const item = document.createElement('div');
-    item.style.cssText = 'display:flex;align-items:center;gap:8px;padding:5px 6px;border-radius:8px;cursor:pointer;transition:background 0.2s;';
+    item.style.cssText = 'display:flex;align-items:center;gap:8px;padding:5px 6px;border-radius:10px;cursor:pointer;transition:background 0.2s;';
     item.innerHTML = `
-      <div style="width:6px;height:6px;border-radius:50%;background:${t.color};flex-shrink:0;opacity:${i===dcCurrent?1:0.3};"></div>
+      <div style="font-size:0.8rem;flex-shrink:0;opacity:${i===dcCurrent?1:0.4};">${t.emoji}</div>
       <div style="flex:1;min-width:0;">
-        <div style="font-size:0.72rem;font-weight:${i===dcCurrent?700:400};color:${i===dcCurrent?'var(--text)':'var(--muted)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.title}</div>
-        <div style="font-size:0.65rem;color:var(--muted);opacity:0.6;">${t.artist}</div>
+        <div style="font-size:0.72rem;font-weight:${i===dcCurrent?700:500};color:${i===dcCurrent?'var(--text)':'var(--muted)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.title}</div>
+        <div style="font-size:0.65rem;color:var(--muted);opacity:0.7;">${t.artist}</div>
       </div>
     `;
-    item.addEventListener('mouseenter', () => item.style.background = 'rgba(0,212,255,0.05)');
+    item.addEventListener('mouseenter', () => item.style.background = 'var(--bg-soft)');
     item.addEventListener('mouseleave', () => item.style.background = 'transparent');
     item.addEventListener('click', () => { dcLoad(i); dcSetPlay(true); });
     dcPlaylist.appendChild(item);
@@ -1272,11 +1033,7 @@ function dcLoad(idx) {
   const t = dcTracks[idx];
   dcTrackTitle.textContent  = t.title;
   dcTrackArtist.textContent = t.artist;
-  dcArtInner.innerHTML = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-    <circle cx="12" cy="12" r="10" stroke="${t.color}" stroke-width="1.5" opacity="0.3"/>
-    <circle cx="12" cy="12" r="3" fill="${t.color}"/>
-    <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" stroke="${t.color}" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-  </svg>`;
+  dcArtInner.textContent = t.emoji;
   if (t.src) { dcAudio.src = t.src; dcAudio.load(); } else { dcAudio.src = ''; }
   dcProgressFill.style.width = '0%';
   dcTimeCur.textContent = '0:00';
@@ -1331,7 +1088,6 @@ dcProgressWrap.addEventListener('click', (e) => {
   }
 });
 
-/* Init: panel hidden, load first track */
 dcPanel.classList.add('dc-hidden');
 dcLoad(0);
 </script>
