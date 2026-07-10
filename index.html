@@ -309,94 +309,6 @@
     line-height: 1.7;
   }
 
-  /* ===== CHANNELS PREVIEW ===== */
-  .channels-section { padding: 90px 0; }
-
-  .discord-preview {
-    background: #fff;
-    border-radius: 28px;
-    overflow: hidden;
-    border: 3px solid var(--border);
-    box-shadow: 0 24px 50px rgba(255,158,192,0.2);
-    display: flex;
-    max-width: 860px;
-    margin: 0 auto;
-  }
-
-  .sidebar { width: 220px; background: var(--bg-soft); flex-shrink: 0; padding: 16px 0; }
-
-  .server-name {
-    font-family: 'Baloo 2', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--pink-deep);
-    padding: 12px 16px;
-    border-bottom: 2px solid var(--border);
-    margin-bottom: 12px;
-    display: flex; align-items: center; gap: 8px;
-  }
-
-  .category {
-    font-family: 'Baloo 2', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--muted);
-    padding: 10px 16px 4px;
-  }
-
-  .channel-item {
-    display: flex; align-items: center; gap: 8px;
-    padding: 7px 16px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text);
-    cursor: pointer;
-    transition: all 0.2s;
-    border-radius: 10px;
-    margin: 2px 8px;
-  }
-  .channel-item:hover, .channel-item.active { background: #fff; color: var(--pink-deep); }
-  .channel-item.active { background: #fff; box-shadow: 0 2px 8px rgba(255,158,192,0.25); font-weight: 700; }
-
-  .channel-hash { color: var(--muted); font-size: 1.05rem; }
-
-  .main-chat { flex: 1; display: flex; flex-direction: column; background: #fffdfb; }
-
-  .chat-header {
-    padding: 16px 20px;
-    border-bottom: 2px solid var(--border);
-    display: flex; align-items: center; gap: 10px;
-    background: #fff;
-  }
-  .chat-header span { font-weight: 700; font-size: 0.95rem; font-family: 'Baloo 2', sans-serif; }
-  .chat-header .desc { color: var(--muted); font-size: 0.8rem; margin-left: 8px; font-weight: 500; }
-
-  .messages { flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
-  .msg { display: flex; gap: 12px; }
-
-  .avatar {
-    width: 38px; height: 38px;
-    border-radius: 14px;
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.05rem;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-  }
-
-  .msg-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 3px; font-family: 'Baloo 2', sans-serif; }
-  .msg-name span { font-size: 0.7rem; color: var(--muted); font-weight: 500; margin-left: 8px; }
-  .msg-text { color: var(--text); font-size: 0.88rem; line-height: 1.6; font-weight: 500; }
-
-  .badge-role {
-    display: inline-block;
-    font-size: 0.62rem;
-    padding: 3px 8px;
-    border-radius: 100px;
-    margin-right: 6px;
-    font-weight: 700;
-  }
-
   /* ===== RULES ===== */
   .rules-section { padding: 90px 0; }
 
@@ -513,8 +425,6 @@
   @media (max-width: 700px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
-    .discord-preview { flex-direction: column; }
-    .sidebar { width: 100%; }
     .join-box { padding: 48px 24px; }
     .float-shape { display: none; }
   }
@@ -538,7 +448,6 @@
   </div>
   <ul class="nav-links">
     <li><a href="#features">Tính năng</a></li>
-    <li><a href="#channels">Kênh</a></li>
     <li><a href="#rules">Nội quy</a></li>
     <li><a href="#join" class="nav-cta">Tham gia ngay</a></li>
   </ul>
@@ -618,89 +527,6 @@
         <div class="feature-icon-wrap">🤖</div>
         <h3>Bot thông minh</h3>
         <p>Hệ thống kinh tế server, mini-game, nhạc bot, rank tự động và nhiều lệnh hữu ích giúp trải nghiệm tốt hơn.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CHANNELS PREVIEW -->
-<section class="channels-section" id="channels">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-tag">Kênh chat</div>
-      <h2>Server 🏠</h2>
-      <p>Cộng đồng thân thiện, chat sôi động 24/7.</p>
-    </div>
-
-    <div class="discord-preview reveal">
-      <div class="sidebar">
-        <div class="server-name">🌙 Lunar House</div>
-
-        <div class="category">📢 Thông báo</div>
-        <div class="channel-item"><span class="channel-hash">#</span> tin-tuc</div>
-        <div class="channel-item"><span class="channel-hash">#</span> quy-dinh</div>
-
-        <div class="category">💬 Trò chuyện</div>
-        <div class="channel-item active"><span class="channel-hash">#</span> general</div>
-        <div class="channel-item"><span class="channel-hash">#</span> meme-flex</div>
-        <div class="channel-item"><span class="channel-hash">#</span> am-nhac</div>
-        <div class="channel-item"><span class="channel-hash">#</span> tim-ban</div>
-
-        <div class="category">🎮 Gaming</div>
-        <div class="channel-item"><span class="channel-hash">#</span> valorant</div>
-        <div class="channel-item"><span class="channel-hash">#</span> pubg-mobile</div>
-        <div class="channel-item"><span class="channel-hash">#</span> lien-quan</div>
-        <div class="channel-item"><span class="channel-hash">#</span> free-fire</div>
-
-        <div class="category">💰 Mua bán</div>
-        <div class="channel-item"><span class="channel-hash">#</span> acc-sell</div>
-        <div class="channel-item"><span class="channel-hash">#</span> skin-items</div>
-        <div class="channel-item"><span class="channel-hash">#</span> gift-card</div>
-      </div>
-
-      <div class="main-chat">
-        <div class="chat-header">
-          <span style="color:var(--muted)">#</span>
-          <span>general</span>
-          <span class="desc">Trò chuyện thoải mái về mọi thứ</span>
-        </div>
-        <div class="messages">
-          <div class="msg">
-            <div class="avatar" style="background:var(--lav)">🐉</div>
-            <div class="msg-body">
-              <div class="msg-name" style="color:var(--lav-deep)">DragonSlayer <span>hôm nay lúc 21:05</span></div>
-              <div class="msg-text"><span class="badge-role" style="background:#F1E7FE;color:var(--pink-deep)">🏆 Admin</span> Chào mừng mọi người! Tối nay có tournament VALORANT lúc 8h tối, ai muốn đăng ký tag mình nhé! 🎮</div>
-            </div>
-          </div>
-          <div class="msg">
-            <div class="avatar" style="background:var(--peach)">🌸</div>
-            <div class="msg-body">
-              <div class="msg-name" style="color:#D98A3D">Sakura_VN <span>hôm nay lúc 21:06</span></div>
-              <div class="msg-text">Đăng ký liền! Mình chơi Jett main 😤 Silver 3 thôi nhưng cố gắng hết mình</div>
-            </div>
-          </div>
-          <div class="msg">
-            <div class="avatar" style="background:var(--mint)">⚡</div>
-            <div class="msg-body">
-              <div class="msg-name" style="color:var(--mint-deep)">NightOwl99 <span>hôm nay lúc 21:08</span></div>
-              <div class="msg-text"><span class="badge-role" style="background:#DFF6EC;color:var(--mint-deep)">💰 Seller</span> Ai cần acc Valorant Gold rank không? Đang có giá tốt ở kênh #acc-sell nha mọi người 👀</div>
-            </div>
-          </div>
-          <div class="msg">
-            <div class="avatar" style="background:var(--pink)">🎵</div>
-            <div class="msg-body">
-              <div class="msg-name" style="color:var(--pink-deep)">PhongThuy <span>hôm nay lúc 21:09</span></div>
-              <div class="msg-text">Mới vào server hôm nay, mọi người thân thiện quá 🥺 Mình tìm bạn chơi PUBG mobile ai cùng chơi không?</div>
-            </div>
-          </div>
-          <div class="msg">
-            <div class="avatar" style="background:#FFB4B4">🔥</div>
-            <div class="msg-body">
-              <div class="msg-name" style="color:#E8637A">xXDarkXx <span>hôm nay lúc 21:11</span></div>
-              <div class="msg-text">@PhongThuy mình chơi nè! Add bạn liền 😎 Phong rank mấy rồi?</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
